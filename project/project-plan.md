@@ -3,14 +3,12 @@
 ## Summary
 
 <!-- Describe your data science project in max. 5 sentences. -->
-This project analyzes the location of free/open hotspots and road sections. In order to identify the streets and routes that have a complete coverage of a continual internet connection. I will use Koln as use case. 
+This project analyzes the location of free/open hotspots and road sections. In order to identify the streets and routes that have the suitable internet infrastructre for new services test. I will use Koln as use case. 
 
 ## Rationale
 
 <!-- Outline the impact of the analysis, e.g. which pains it solves. -->
-The government may be able to improve the quality of some services, such as speed monitoring, by placing more connected sensors along these roads.
-This might also be used to recommend routes for parents who want to track their children for safety reasons, or for those who prefer walking long distances while listening to music that requires an internet connection.
-
+Getting the road sections that has the suitable interent infrastructre, will make it easier to choose the places where the new serives , ex. speed monitoring, traffic light smart atomation or any IOT application that is realted to samrt cities. This location will make it feasable to test the new technologies without the headace of making the whole infrastucture needed for it. 
 
 ## Datasources
 
