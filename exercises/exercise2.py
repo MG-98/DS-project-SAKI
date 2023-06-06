@@ -17,8 +17,11 @@ trainstops_df = trainstops_df[trainstops_df['Verkehr'].isin(["FV", "RV", "nur DP
 # Valid "Laenge", "Breite" values are geographic coordinate system values between -90 and 90
 trainstops_df['Breite'] = trainstops_df['Breite'].map(lambda x: float(x.replace(',' , '.')))
 trainstops_df = trainstops_df[(trainstops_df['Breite']>-90) & (trainstops_df['Breite']<90)]
+trainstops_df['Breite'] = trainstops_df['Breite'].map(lambda x: str(x).replace('.' , ','))
+
 trainstops_df['Laenge'] = trainstops_df['Laenge'].map(lambda x: float(x.replace(',' , '.')))
 trainstops_df = trainstops_df[(trainstops_df['Laenge']>-90) & (trainstops_df['Laenge']<90)]
+trainstops_df['Laenge'] = trainstops_df['Laenge'].map(lambda x: str(x).replace('.' , ','))
 
 # Empty cells are considered invalid
 trainstops_df = trainstops_df.dropna()
