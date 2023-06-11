@@ -27,6 +27,7 @@ jobs:
         pip install pytest
         pip install pandas
         pip install SQLAlchemy
+        pip install pysqlite3
     
     # Run exercise feedback
     - name: Pipeline feedback
