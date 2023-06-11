@@ -19,5 +19,5 @@ jobs:
 
     # Run exercise feedback
     - name: Pipeline feedback
-      run: |
-        /main/project/tests.sh
+      run: tests.sh
+      working-directory: ../main/project
