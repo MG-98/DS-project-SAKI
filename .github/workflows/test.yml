@@ -23,4 +23,4 @@ jobs:
 
     # Run exercise feedback
     - name: Pipeline feedback
-      run: py data/data_pipeline.py
+      run: python data/data_pipeline.py
