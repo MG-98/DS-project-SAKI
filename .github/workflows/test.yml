@@ -14,12 +14,6 @@ jobs:
       with:
         path: main
 
-    - name: Checkout exercise feedback
-      uses: actions/checkout@v3
-      with:
-        repository: jvalue/amse-exercise-feedback
-        path: grading
-
     - name: Set up Node
       uses: actions/setup-node@v3
       with:
