@@ -12,4 +12,4 @@ jobs:
 
     # Run exercise feedback
     - name: Pipeline feedback
-      run: ./project/tests.sh
+      run: ./project/test_class.py
