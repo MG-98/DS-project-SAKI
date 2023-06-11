@@ -12,12 +12,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
       with:
-        path: main
-
-    - name: Set up Node
-      uses: actions/setup-node@v3
-      with:
-        node-version: 'lts/*'
+        path: main/project
+      
 
     # Install python
     - name: Set up Python 3.11
@@ -27,5 +23,4 @@ jobs:
     
     # Run exercise feedback
     - name: Pipeline feedback
-      run: |
-        ./project/tests.sh
+      run: sh tests.sh
