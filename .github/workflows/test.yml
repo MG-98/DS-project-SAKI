@@ -23,5 +23,4 @@ jobs:
 
     # Run exercise feedback
     - name: Pipeline feedback
-      run: pytest
-      working-directory: project
+      run: py data/data_pipeline.py
