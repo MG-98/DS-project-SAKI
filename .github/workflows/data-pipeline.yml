@@ -29,7 +29,7 @@ jobs:
         pip install SQLAlchemy
         pip install pysqlite3
     
-    # Run exercise feedback
+    # Run pipeline feedback
     - name: Pipeline feedback
       run: sh tests.sh
       working-directory: project
