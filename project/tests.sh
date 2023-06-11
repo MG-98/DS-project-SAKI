@@ -1,3 +1,3 @@
 #!/bin/sh
 
-pytest -q ./project/test_class.py
+pytest -q test_class.py
