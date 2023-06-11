@@ -4,7 +4,10 @@ on:
   push:
     branches:
     - main
-
+defaults:
+  run:
+    working-directory: project
+    
 jobs:
   exercise-feedback:
     runs-on: ubuntu-latest
@@ -23,5 +26,4 @@ jobs:
     
     # Run exercise feedback
     - name: Pipeline feedback
-      run: ls project
-      working-directory: ./project
+      run: ls 
