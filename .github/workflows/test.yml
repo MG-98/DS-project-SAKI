@@ -12,7 +12,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
       with:
-          sparse-checkout: .
+        sparse-checkout: |
+          .github
+          src
       
 
     # Install python
