@@ -4,9 +4,7 @@ on:
   push:
     branches:
     - main
-    paths:
-    - data/**
-
+    
 jobs:
   pipeline-feedback:
     runs-on: ubuntu-latest
@@ -19,4 +17,4 @@ jobs:
 
     # Run exercise feedback
     - name: Pipeline feedback
-      run: https://github.com/MG-98/DS-project-SAKI/tree/main/project/tests.sh
+      run: 
