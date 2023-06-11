@@ -19,4 +19,4 @@ jobs:
 
     # Run exercise feedback
     - name: Pipeline feedback
-      run: /DS-project-SAKI/project/tests.sh
+      run: https://github.com/MG-98/DS-project-SAKI/tree/main/project/tests.sh
