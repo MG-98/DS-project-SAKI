@@ -9,6 +9,10 @@ jobs:
   pipeline-feedback:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        path: main
     # Install python
     - name: Set up Python 3.11
       uses: actions/setup-python@v4
@@ -23,4 +27,4 @@ jobs:
 
     # Run exercise feedback
     - name: Pipeline feedback
-      run: python exercises/exercise2.py
+      run: project/tests.sh
