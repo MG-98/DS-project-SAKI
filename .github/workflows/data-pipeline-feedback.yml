@@ -1,4 +1,4 @@
-name: Data Pipeline Feedback 2
+name: Data Pipeline Feedback 
 
 on:
   push:
