@@ -1,0 +1,110 @@
+constraint CINStringLength oftype LengthConstraint {
+  minLength: 5;
+  maxLength : 5;
+}
+
+constraint PositiveInt oftype RangeConstraint {
+  lowerBound: 0;
+  lowerBoundInclusive : false;
+}
+
+valuetype Int oftype integer{
+	constraints : [PositiveInt];
+}
+
+valuetype CIN oftype text{
+	constraints : [CINStringLength];
+}
+
+pipeline CarssPipeline {
+
+	block CarsExtractor oftype HttpExtractor {
+		url: "https://www-genesis.destatis.de/genesis/downloads/00/tables/46251-0021_00.csv";
+	}
+
+	pipe {
+		from: CarsExtractor;
+		to: CarsTextFileInterpreter;
+	}
+
+	block CarsTextFileInterpreter oftype TextFileInterpreter {
+		
+	}
+
+
+	pipe {
+		from: CarsTextFileInterpreter;
+		to: CarsTextFileCleaner;
+	}
+
+	block CarsTextFileCleaner oftype TextRangeSelector {
+		lineFrom : 8;
+		lineTo : 483;
+	}
+
+
+	pipe {
+		from: CarsTextFileCleaner;
+		to: CarsCSVInterpreter;
+	}
+
+    block CarsCSVInterpreter oftype CSVInterpreter {
+		delimiter: ";";
+	}
+
+	pipe {
+		from: CarsCSVInterpreter;
+		to: CarsColumnDeleter;
+	}
+
+	block CarsColumnDeleter oftype ColumnDeleter {
+  	delete: [
+	column D , column E, column F,column G,column H,column I,column J,column K,
+	column L, column N,column O,column P,column Q,column R,column S,column T,column U,
+	column V,column X,column Y,column Z, 
+	
+	column AA,column AB, column AC, column AD, column AE, column AF,column AH,column AI, column AJ,
+	column AK,column AL,column AM,column AN,column AO,column AP, column AR,column AS,column AT,
+	column AU,column AV,column AW,column AX,column AY,column AZ ,
+
+	column BB, column BC, column BD, column BE, column BF , column BG,column BH,column BI, column BJ,
+	column BL,column BM,column BN,column BO,column BP, column BQ, column BR,column BS,column BT,
+	column BV,column BW,column BX,column BY,column BZ,
+
+	column CA,column CB, column CC, column CD, column CE
+	];
+	}
+
+
+    pipe {
+		from: CarsColumnDeleter;
+		to: CarsTableInterpreter;
+	}
+
+
+	block CarsTableInterpreter oftype TableInterpreter {
+		header: false;
+		columns: [
+			"date" oftype text,
+			"CIN" oftype CIN,
+			"name" oftype text,
+			"petrol" oftype Int,
+			"diesel" oftype Int,
+			"gas" oftype Int,
+			"electro" oftype Int,
+			"hybrid" oftype Int,
+			"plugInHybrid" oftype Int,
+			"others" oftype Int
+        ];
+	}
+
+	pipe {
+		from: CarsTableInterpreter;
+		to: CarsLoader;
+	}
+
+	block CarsLoader oftype SQLiteLoader {
+		table: "cars";
+		file: "./cars.sqlite";
+	}
+}
