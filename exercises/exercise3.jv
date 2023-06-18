@@ -28,7 +28,8 @@ pipeline CarssPipeline {
 	}
 
 	block CarsTextFileInterpreter oftype TextFileInterpreter {
-		
+		encoding : "ascii";
+	
 	}
 
 
