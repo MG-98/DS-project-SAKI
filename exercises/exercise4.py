@@ -35,7 +35,7 @@ temperature_df['Batterietemperatur'] = (temperature_df['Batterietemperatur']*9/5
 
 # data validation
 temperature_df = temperature_df.dropna()
-temperature_df = temperature_df[temperature_df['Geraet aktiv'] > 0]
+temperature_df = temperature_df[temperature_df['Geraet'] > 0]
 
 # data loading
 conn = sqlite3.connect('temperatures.sqlite')
