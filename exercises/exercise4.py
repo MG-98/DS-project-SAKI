@@ -15,13 +15,19 @@ with ZipFile(file_name, 'r') as zip:
     # extracting all the files
     zip.extractall()
 
-temperature_df  = pd.read_csv('data.csv' , sep=';' , decimal= ',' ,  error_bad_lines=False).reset_index()
+temperature_df  = pd.read_csv('data.csv' , sep=';' , header=None, names=range(500))
 
 # data filtering
+temperature_df.columns = temperature_df.iloc[0]
+temperature_df  = temperature_df[1:]
+temperature_df = temperature_df.iloc[:, 0:11]
 temperature_df = temperature_df[['Geraet' , 'Hersteller' ,'Model' ,'Monat' ,'Temperatur in °C (DWD)' , 'Batterietemperatur in °C' , 'Geraet aktiv']]
 
 # renaming coloums
 temperature_df = temperature_df.rename(columns={"Temperatur in °C (DWD)": "Temperatur", "Batterietemperatur in °C": "Batterietemperatur"})
+temperature_df['Temperatur'] = temperature_df['Temperatur'].map(lambda x: float(x.replace(',' , '.')))
+temperature_df['Batterietemperatur'] = temperature_df['Batterietemperatur'].map(lambda x: float(x.replace(',' , '.')))
+temperature_df = temperature_df.astype({'Geraet': 'int64' , 'Monat' : 'int64' ,  'Temperatur' : 'float64' , 'Batterietemperatur' : 'float64' })
 
 # data transofrmation
 temperature_df['Temperatur'] = (temperature_df['Temperatur']*9/5) +32 
