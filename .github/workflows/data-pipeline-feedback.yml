@@ -3,10 +3,10 @@ name: Data Pipeline Feedback
 on:
   push:
     branches:
-      - main
-  paths:
-      - data/**
-      - project/**
+    - main
+    paths:
+    - data/**
+    - project/**
     
 jobs:
   pipeline-feedback:
