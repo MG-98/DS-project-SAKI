@@ -57,42 +57,22 @@ pipeline GtfsPipeline {
 
 	pipe {
 		from: GtfsTextFileInterpreter;
-		to: CarsTextFileCleaner;
-	}
-
-	block CarsTextFileCleaner oftype TextRangeSelector {
-		lineFrom : 2;
-	}
-
-	pipe {
-		from: CarsTextFileCleaner;
 		to: GtfsCSVInterpreter;
 	}
 
 
     block GtfsCSVInterpreter oftype CSVInterpreter {
 		delimiter: '"';
-		enclosingEscape: ",";
-
-	}
-
-	pipe {
-		from: GtfsCSVInterpreter;
-		to: GtfsColumnDeleter;
 	}
 
 	
-	block GtfsColumnDeleter oftype ColumnDeleter {
-		delete: [column A , column C , column D , column E , column G , column H,column I , column K, column M,column O];
-	}
-
 	pipe {
-		from: GtfsColumnDeleter;
+		from: GtfsCSVInterpreter;
 		to: GtfsTableInterpreter;
 	}
 
 	block GtfsTableInterpreter oftype TableInterpreter {
-		header: false;
+		header: true;
 		columns: [
 			"stop_id" oftype integer,
 			"stop_name" oftype text,
